@@ -1,0 +1,14 @@
+The Pre-requisites or requirements to start a security testing:
+
+Requirement for Manual/Automatic Security testing (DAST) on Web Application:
+  URL of the Web application
+  In-scope functionality walkthrough/demo
+  User roles details with security matrix
+  2 sets of credentials for each user role
+  List of security testing tools to use
+  Test file to upload into the application if File Upload feature is available
+  Testing Period
+  Reporting tool
+  Reporting Template
+  Any limitations on the web application
+  
