@@ -1,0 +1,12 @@
+https://www.invicti.com/learn/remote-code-execution-rce/
+
+eval injection:
+it is part of code injection
+  -1
+    - Inject eval payload that contains shell command in request query parameters/request body parameters/request fields/
+    - send the request to server
+    - server uses the injected value as an argument value to eval() function on the backend
+    - server executes the given payload using eval() function
+    - shell command is executed
+  -2
+    - 
