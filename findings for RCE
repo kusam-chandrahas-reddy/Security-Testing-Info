@@ -1,4 +1,6 @@
 https://www.invicti.com/learn/remote-code-execution-rce/
+https://av.tib.eu/media/36405
+
 
 eval injection:
 it is part of code injection
@@ -10,3 +12,13 @@ it is part of code injection
     - shell command is executed
   -2
     - 
+SQLi:
+  -1
+    - Inject SQLi payload in request
+    - SQL server runs the payload and saves the reverse shell in the server file system
+    - Attacker accesses the stored reverse shell file
+    - server executes it
+
+  -2
+    - Server runs the shell command given in the injected payload
+    - Server responds to the user with the output of injected shell command
