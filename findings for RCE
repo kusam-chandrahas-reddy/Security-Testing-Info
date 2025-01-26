@@ -22,3 +22,8 @@ SQLi:
   -2
     - Server runs the shell command given in the injected payload
     - Server responds to the user with the output of injected shell command
+
+Deserialization:
+  -1
+    - Attacker modifies the serialized data by injecting programming code to run shell command or to download reverse shell files
+    - while deserializing the transfered serialized data to an Object, the backend programming executes the injected payload
