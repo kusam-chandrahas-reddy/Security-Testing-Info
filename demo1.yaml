@@ -1,0 +1,68 @@
+env:
+  contexts:
+  - name: DemoTest
+    urls:
+    - https://demo.testfire.net
+    includePaths:
+    - https://demo.testfire.net.*
+    authentication:
+      method: form
+      parameters:
+        loginPageUrl: https://demo.testfire.net/login.jsp
+        loginRequestUrl: https://demo.testfire.net/doLogin
+        loginRequestBody: "uid={%username%}&passw={%password%}&btnSubmit=Login"
+      verification:
+        method: response
+        loggedInRegex: \Q>Sign Off<\E
+        loggedOutRegex: \Q>Sign In<\E
+        pollFrequency: 60
+        pollUnits: requests
+        pollUrl: ""
+        pollPostData: ""
+    sessionManagement:
+      method: cookie
+    technology: {}
+    structure: {}
+    users:
+    - name: jsmith
+      credentials:
+        password: Demo1234
+        username: jsmith
+  parameters: {}
+jobs:
+- type: passiveScan-config
+  parameters: {}
+- type: spider
+  parameters:
+    user: jsmith
+    parseDsStore: null
+  tests:
+  - name: At least 100 URLs found
+    type: stats
+    onFail: INFO
+    statistic: automation.spider.urls.added
+    operator: '>='
+    value: 100
+- type: spiderAjax
+  parameters:
+    user: jsmith
+    browserId: null
+  tests:
+  - name: At least 100 URLs found
+    type: stats
+    onFail: INFO
+    statistic: spiderAjax.urls.added
+    operator: '>='
+    value: 100
+- type: passiveScan-wait
+  parameters: {}
+- type: activeScan
+  parameters:
+    user: jsmith
+  policyDefinition:
+    defaultStrength: medium
+    defaultThreshold: medium
+- type: report
+  parameters:
+    reportTitle: ZAP by Checkmarx Scanning Report
+
